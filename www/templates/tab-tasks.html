@@ -1,0 +1,9 @@
+<ion-view title="Tasks">
+  <ion-content class="has-header">
+    <ion-list>
+      <ion-item ng-repeat="task in tasks" type="item-text-wrap" href="#/task/{{task.id}}">
+        {{task.name}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
