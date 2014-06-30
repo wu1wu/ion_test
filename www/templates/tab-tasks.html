@@ -1,23 +1,24 @@
 <ion-view title="Tasks">
   <ion-content class="has-header">
-    <ion-list can-swipe="true" show-delete="toggleDeleteMode" show-reorder="toggleOrderingMode">
+    <ion-list can-swipe="toggleSwipe=true" show-delete="toggleDeleteMode" show-reorder="toggleOrderingMode">
       <ion-item ng-repeat="task in tasks" type="item-text-wrap" ui-sref="tab.task-detail({ taskId: task.id })">
 
           #{{task.id}}. {{task.name}}
+
           <ion-option-button class="button-positive">Share</ion-option-button>
           <ion-option-button class="button-assertive">Edit</ion-option-button>
           
-          <ion-delete-button class="ion-minus-circled" ng-click="deleteTask(item)"></ion-delete-button>
+          <ion-delete-button class="ion-minus-circled" ng-click="deleteTask(task, $event)"></ion-delete-button>
           <ion-reorder-button class="ion-navicon" on-reorder="reorderTask(task, $fromIndex, $toIndex)">
       </ion-item>
     </ion-list>
 
 
-    <ion-toggle ng-model="toggleDeleteMode" ng-click="toggleOrderingMode=false;">
+    <ion-toggle ng-model="toggleDeleteMode" ng-click="toggleOrderingMode=false; toggleSwipe=(!toggleDeleteMode && !toggleOrderingMode)">
       Show Delete?
     </ion-toggle>
     
-    <ion-toggle ng-model="toggleOrderingMode" ng-click="toggleDeleteMode=false;">
+    <ion-toggle ng-model="toggleOrderingMode" ng-click="toggleDeleteMode=false; toggleSwipe=(!toggleDeleteMode && !toggleOrderingMode)">
       Re-order items?
     </ion-toggle>
 
