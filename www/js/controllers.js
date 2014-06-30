@@ -1,16 +1,30 @@
-angular.module('myApp.controllers', [])
+var app = angular.module('myApp.controllers', []);
 
-.controller('DashCtrl', function($scope) {
-})
+app.controller('DashCtrl', ['$scope', function($scope) {
+}]);
 
-.controller('TaksCtrl', ['$scope', 'TaskFactory', function($scope, Task) {
+app.controller('TaksCtrl', ['$scope', 'TaskFactory', function($scope, Task) {
   $scope.tasks = Task.all();
-}])
 
-.controller('TaskDetailCtrl', ['$scope', '$stateParams', 'TaskFactory', function($scope, $stateParams, Task) {
-  console.log("SDfsdfsd");
+  $scope.reorderTask = function(task, fromIndex, toIndex) {
+    $scope.tasks.splice(fromIndex, 1);
+    $scope.tasks.splice(toIndex, 0, task);
+  };
+
+
+  $scope.deleteTask = function(task) {
+    $scope.tasks.splice($scope.tasks.indexOf(task), 1);
+  };
+  
+
+
+}]);
+
+app.controller('TaskDetailCtrl', ['$scope', '$stateParams', 'TaskFactory', function($scope, $stateParams, Task) {
   $scope.task = Task.get($stateParams.taskId);
-}])
 
-.controller('AccountCtrl', function($scope) {
-});
+
+}]);
+
+app.controller('AccountCtrl', ['$scope', function($scope) {
+}]);

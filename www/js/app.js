@@ -1,6 +1,12 @@
-angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
+var app = angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
 
-.run(function($ionicPlatform) {
+app.config(['$logProvider', function($logProvider){
+  $logProvider.debugEnabled(true);
+}]);
+
+
+
+app.run(['$ionicPlatform', function($ionicPlatform) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -12,14 +18,10 @@ angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
       StatusBar.styleDefault();
     }
   });
-})
+}]);
 
-.config(function($stateProvider, $urlRouterProvider) {
+app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
-  // Ionic uses AngularUI Router which uses the concept of states
-  // Learn more here: https://github.com/angular-ui/ui-router
-  // Set up the various states which the app can be in.
-  // Each state's controller can be found in controllers.js
   $stateProvider
 
     .state('app', {
@@ -38,7 +40,6 @@ angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
     })
 
     // Each tab has its own nav history stack:
-
     .state('tab.dash', {
       url: '/dash',
       views: {
@@ -50,7 +51,7 @@ angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
     })
 
     .state('tab.tasks', {
-      url: '/tasks',
+      url: '/tasks/',
       views: {
         'tab-tasks': {
           templateUrl: 'templates/tab-tasks.html',
@@ -58,10 +59,12 @@ angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
         }
       }
     })
+
     .state('tab.task-detail', {
       url: '/task/:taskId',
       views: {
-        'tab-task-detail': {
+        // re-use the same tab
+        'tab-tasks': {
           templateUrl: 'templates/task-detail.html',
           controller: 'TaskDetailCtrl'
         }
@@ -81,5 +84,5 @@ angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/dash');
 
-});
+}]);
 
