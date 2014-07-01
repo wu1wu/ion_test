@@ -51,7 +51,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
     })
 
     .state('tab.tasks', {
-      url: '/tasks/',
+      url: '/tasks',
       views: {
         'tab-tasks': {
           templateUrl: 'templates/tab-tasks.html',
