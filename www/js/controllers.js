@@ -67,5 +67,33 @@ app.controller('TaskDetailCtrl', ['$scope', '$stateParams', 'TaskFactory', funct
   $scope.task = Task.get($stateParams.taskId);
 }]);
 
-app.controller('AccountCtrl', ['$scope', function($scope) {
+
+app.controller('AccountCtrl', ['$scope', '$cordovaBarcodeScanner', function($scope, $cordovaBarcodeScanner) {
+
+  $scope.scanBarcode = function() {
+    $cordovaBarcodeScanner.scan().then(function(imageData) {
+      // Success! Barcode data is here
+      console.log('Scan successfull');
+      console.log('imageData >>', imageData);
+  
+
+    }, function(err) {
+      // An error occured. Show a message to the user
+      console.log('Scan unsuccessfull');
+      console.log('err >>', err);
+
+    });
+  };
+
+  // // NOTE: encoding not functioning yet
+  // $scope.encodeData = function() {
+  //   $cordovaBarcodeScanner.encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com").then(function(success) {
+  //     // Success! 
+  //   }, function(err) {
+  //     // An error occured. Show a message to the user
+
+  //   });      
+  // }
+
 }]);
+

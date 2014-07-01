@@ -1,4 +1,5 @@
-var app = angular.module('myApp', ['ionic', 'myApp.controllers', 'myApp.services'])
+var app = angular.module('myApp', ['ionic', 'ngCordova', 'myApp.controllers', 'myApp.services'])
+
 
 app.config(['$logProvider', function($logProvider){
   $logProvider.debugEnabled(true);
