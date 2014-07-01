@@ -14,15 +14,25 @@
     </ion-list>
 
 
+    
     <ion-toggle ng-model="toggleDeleteMode" ng-click="toggleOrderingMode=false; toggleSwipe=(!toggleDeleteMode && !toggleOrderingMode)">
       Show Delete?
     </ion-toggle>
     
-    <ion-toggle ng-model="toggleOrderingMode" ng-click="toggleDeleteMode=false; toggleSwipe=(!toggleDeleteMode && !toggleOrderingMode)">
+    <ion-toggle ng-model="toggleOrderingMode" ng-class="myclass"   ng-click="toggleDeleteMode=false; toggleSwipe=(!toggleDeleteMode && !toggleOrderingMode)">
       Re-order items?
     </ion-toggle>
+  
+    <div class="row">
+      <div class="col" style="text-align:center;">
+        <button class="button icon-left ion-settings zbutton-full button-calm button-outline" ng-click="openActionSheet()" >
+          Action sheet
+        </button>
 
+      </div>
+    </div>
 
+  
   </ion-content>
 </ion-view>
 
