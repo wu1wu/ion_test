@@ -1,0 +1,26 @@
+<ion-view title="Take a picture">
+    <ion-content class="has-header padding">
+
+        <div class="row">
+            <div class="col" style="text-align:center;">
+                <button class="button icon-left ion-ios7-camera zbutton-full button-calm button-outline" ng-click="takePicture()" >
+                    Take Picture
+                </button>
+            </div>
+        </div>
+
+        <div ng-show="imageSrc">
+            Your picture: </br>
+            <img ng-src="{{imageSrc}}" ng-if="imageSrc" />
+        </div>
+
+        <div ng-show="cameraError">
+            Error: </br>
+            >>{{cameraError}}<<
+        </div>
+
+
+
+
+    </ion-content>
+</ion-view>

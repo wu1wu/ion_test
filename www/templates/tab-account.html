@@ -2,6 +2,13 @@
   <ion-content class="has-header padding">
     <h1>Account</h1>
 
+
+   <div class="row padded">
+       Format: {{scaned.format}}</br>
+       Resutlt: {{scaned.text}}</br>
+       >>{{blob}}<<
+   </div>
+
     <div class="row">
       <div class="col" style="text-align:center;">
         <button class="button icon-left ion-settings zbutton-full button-calm button-outline" ng-click="scanBarcode()" >

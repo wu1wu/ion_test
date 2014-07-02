@@ -70,30 +70,52 @@ app.controller('TaskDetailCtrl', ['$scope', '$stateParams', 'TaskFactory', funct
 
 app.controller('AccountCtrl', ['$scope', '$cordovaBarcodeScanner', function($scope, $cordovaBarcodeScanner) {
 
+  $scope.scaned = {};
+  $scope.blob = null;
+
   $scope.scanBarcode = function() {
     $cordovaBarcodeScanner.scan().then(function(imageData) {
-      // Success! Barcode data is here
-      console.log('Scan successfull');
-      console.log('imageData >>', imageData);
-  
+      $scope.scaned = {
+        'format': imageData.format,
+        'text': imageData.text
+      };
+      $scope.blob = imageData;
 
     }, function(err) {
-      // An error occured. Show a message to the user
-      console.log('Scan unsuccessfull');
-      console.log('err >>', err);
-
+      $scope.scaned = {};
+      $scope.blob = err;
     });
   };
 
-  // // NOTE: encoding not functioning yet
-  // $scope.encodeData = function() {
-  //   $cordovaBarcodeScanner.encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com").then(function(success) {
-  //     // Success! 
-  //   }, function(err) {
-  //     // An error occured. Show a message to the user
 
-  //   });      
-  // }
+}]);
 
+
+app.controller('CameraCtrl', ['$scope', '$cordovaCamera', function($scope, $cordovaCamera) {
+
+  $scope.imageSrc = null;
+  $scope.cameraError = null;
+
+  $scope.takePicture = function() {
+    var options = {
+      quality : 100,
+      destinationType : Camera.DestinationType.DATA_URL,
+      sourceType : Camera.PictureSourceType.CAMERA,
+      allowEdit : false,  // discard or save option on Android
+      encodingType: Camera.EncodingType.PNG,
+      targetWidth: 500,
+      targetHeight: 500,
+      popoverOptions: CameraPopoverOptions,
+      saveToPhotoAlbum: false,
+      cameraDirection: Camera.Direction.FRONT
+    };
+
+    $cordovaCamera.getPicture(options).then(function(imageData) {
+      $scope.imageSrc = "data:image/png;base64," + imageData;
+      $scope.cameraError = null;
+    }, function(err) {
+      $scope.cameraError = err;
+    });
+  }
 }]);
 

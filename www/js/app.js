@@ -82,6 +82,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       }
     })
 
+    .state('camera', {
+      url: '/camera',
+      templateUrl: 'templates/camera.html',
+      controller: 'CameraCtrl'
+    })
+
+
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/tasks');
 
