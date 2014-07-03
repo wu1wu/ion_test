@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.ionicframework.myApp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+    <name>Don Ion</name>
     <description>
-        An Ionic Framework and Cordova project.
+        A hybrid mobile app made using Cordova, Ionic and AngularJS.
     </description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
+    <author email="donovan@platform7.com" href="http://www.platform7.com/s">
+      Platform7
     </author>
     <content src="index.html" />
     <access origin="*" />

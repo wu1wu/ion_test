@@ -17,6 +17,10 @@
                             "count": 1
                         },
                         {
+                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
+                            "count": 1
+                        },
+                        {
                             "xml": "<feature name=\"Console\"><param name=\"ios-package\" value=\"CDVLogger\" /></feature>",
                             "count": 1
                         },
@@ -26,10 +30,6 @@
                         },
                         {
                             "xml": "<feature name=\"Device\"><param name=\"ios-package\" value=\"CDVDevice\" /></feature>",
-                            "count": 1
-                        },
-                        {
-                            "xml": "<feature name=\"Camera\"><param name=\"ios-package\" value=\"CDVCamera\" /></feature>",
                             "count": 1
                         }
                     ]
@@ -67,24 +67,6 @@
                             "count": 1
                         }
                     ],
-                    "AddressBook.framework": [
-                        {
-                            "xml": "true",
-                            "count": 1
-                        }
-                    ],
-                    "AddressBookUI.framework": [
-                        {
-                            "xml": "true",
-                            "count": 1
-                        }
-                    ],
-                    "CoreGraphics.framework": [
-                        {
-                            "xml": "false",
-                            "count": 2
-                        }
-                    ],
                     "ImageIO.framework": [
                         {
                             "xml": "true",
@@ -97,9 +79,27 @@
                             "count": 1
                         }
                     ],
+                    "CoreGraphics.framework": [
+                        {
+                            "xml": "false",
+                            "count": 2
+                        }
+                    ],
                     "MobileCoreServices.framework": [
                         {
                             "xml": "false",
+                            "count": 1
+                        }
+                    ],
+                    "AddressBook.framework": [
+                        {
+                            "xml": "true",
+                            "count": 1
+                        }
+                    ],
+                    "AddressBookUI.framework": [
+                        {
+                            "xml": "true",
                             "count": 1
                         }
                     ]
@@ -114,6 +114,9 @@
         "com.phonegap.plugins.barcodescanner": {
             "PACKAGE_NAME": "com.ionicframework.myApp"
         },
+        "org.apache.cordova.camera": {
+            "PACKAGE_NAME": "com.ionicframework.myApp"
+        },
         "org.apache.cordova.console": {
             "PACKAGE_NAME": "com.ionicframework.myApp"
         },
@@ -121,9 +124,6 @@
             "PACKAGE_NAME": "com.ionicframework.myApp"
         },
         "org.apache.cordova.device": {
-            "PACKAGE_NAME": "com.ionicframework.myApp"
-        },
-        "org.apache.cordova.camera": {
             "PACKAGE_NAME": "com.ionicframework.myApp"
         }
     },
