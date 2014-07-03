@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.myApp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.platform7.myApp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Don Ion</name>
     <description>
         A hybrid mobile app made using Cordova, Ionic and AngularJS.
@@ -22,4 +22,14 @@
     <feature name="StatusBar">
       <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
+
+    <!-- ios preferences -->
+    <preference name="UIWebViewDecelerationSpeed" value="fast" />
+
+
+
+    <!-- android preferences -->
+    <preference name="LoadingDialog" value="One sec,We're making the awesomeness!"/>
+    <preference name="LogLevel" value="DEBUG"/>
+
 </widget>
