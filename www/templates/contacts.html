@@ -1,0 +1,28 @@
+<ion-view title="Contacts">
+  <ion-content class="has-header">
+
+    <div class="list">
+      <div class="item item-avatar">
+        <img src="cover.jpg">
+        <h2>John Manro</h2>
+        <p>0827804636</p>
+      </div>
+
+      <div class="item item-divider">
+        Candy Bars
+      </div>
+
+
+      <div class="item"
+        collection-repeat="contact in contacts"
+        collection-item-width="'100%'"
+        collection-item-height="75" 
+        style="height: 75px; width:100%;">
+        <h2>{{contact.displayName}}</h2>
+        <p>{{contact.phoneNumbers.0.value}} ## {{contact.emails.0.value}}</p>
+      </div>
+    
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -56,7 +56,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       views: {
         'tab-tasks': {
           templateUrl: 'templates/tab-tasks.html',
-          controller: 'TaksCtrl'
+          controller: 'TasksCtrl'
         }
       }
     })
@@ -86,6 +86,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/camera',
       templateUrl: 'templates/camera.html',
       controller: 'CameraCtrl'
+    })
+
+    .state('contacts', {
+      url: '/contacts',
+      templateUrl: 'templates/contacts.html',
+      controller: 'ContactsCtrl'
     })
 
 

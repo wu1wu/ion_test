@@ -3,7 +3,7 @@ var app = angular.module('myApp.controllers', []);
 app.controller('DashCtrl', ['$scope', function($scope) {
 }]);
 
-app.controller('TaksCtrl', ['$scope', 'TaskFactory', '$ionicPopup', '$ionicActionSheet', '$timeout', function($scope, Task, $ionicPopup, $ionicActionSheet, $timeout) {
+app.controller('TasksCtrl', ['$scope', 'TaskFactory', '$ionicPopup', '$ionicActionSheet', '$timeout', function($scope, Task, $ionicPopup, $ionicActionSheet, $timeout) {
   $scope.tasks = Task.all();
 
 
@@ -118,4 +118,83 @@ app.controller('CameraCtrl', ['$scope', '$cordovaCamera', function($scope, $cord
     });
   }
 }]);
+
+
+app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $cordovaContacts) {
+// app.controller('ContactsCtrl', ['$scope', function($scope) {
+
+  $scope.contacts = null;
+  $scope.contactError = null;
+
+  var options = {
+    fields: ["id", "displayName", "name", "phoneNumbers", "emails", "birthday", "photos"],
+    multiple: true
+  };
+
+  $cordovaContacts.find(options).then(function(contacts){
+    
+    // var result = [];
+    // angular.forEach(contacts, function(contact){
+    //   if(contact){        
+    //     result.push(friend);          
+    //   }
+    // });
+    // return results;
+
+    $scope.contacts = contacts;
+    $scope.contactError = null;
+    // console.log("contacts >>>", contacts);
+  }, function(err){
+    $scope.contacts = null;
+    $scope.contactError = err;
+    // console.log("contactError >>>", contactError);
+  });
+
+
+  // function onSuccess(contacts) {
+  //   $scope.contacts = contacts;
+
+
+  //   // for (var i=0; i<contacts.length; i++) {
+  //   //     // display phone numbers
+  //   //     alert(contacts[i].displayName);
+
+  //   //     alert("Formatted: " + contacts[i].name.formatted + "\n" + 
+  //   //           "Family Name: "  + contacts[i].name.familyName + "\n" + 
+  //   //           "Given Name: "  + contacts[i].name.givenName + "\n" + 
+  //   //           "Middle Name: "  + contacts[i].name.middleName + "\n" + 
+  //   //           "Suffix: "  + contacts[i].name.honorificSuffix + "\n" + 
+  //   //           "Prefix: "  + contacts[i].name.honorificPrefix);
+
+  //   //     for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
+  //   //         alert("Type: " + contacts[i].phoneNumbers[j].type + "\n" + 
+  //   //               "Value: "  + contacts[i].phoneNumbers[j].value + "\n" + 
+  //   //               "Preferred: "  + contacts[i].phoneNumbers[j].pref);
+  //   //     }
+  //   // }
+
+  //   $scope.contactError = null;
+  //   console.log("contacts >>>", contacts);
+  // };
+
+  // function onError(contactError) {
+  //   $scope.contacts = null;
+  //   $scope.contactError = err;
+  //   console.log("contactError >>>", contactError);
+  // };
+
+  // var options      = new ContactFindOptions();
+  // options.filter   = "Sergio";
+  // options.multiple = true;
+  // // options.desiredFields = ["id", "displayName", "name", "phoneNumbers", "emails", "birthday", "photos"];
+  // var fields       = ["id", "displayName", "name", "phoneNumbers", "emails", "birthday", "photos"];
+
+  // navigator.contacts.find(fields, onSuccess, onError, options);
+  
+
+
+
+}]);
+
+
 
