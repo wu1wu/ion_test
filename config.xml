@@ -17,6 +17,9 @@
 
 
 
+
+
+
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />

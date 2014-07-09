@@ -94,6 +94,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       controller: 'ContactsCtrl'
     })
 
+    .state('location', {
+      url: '/location',
+      templateUrl: 'templates/location.html',
+      controller: 'LocationCtrl'
+    })
+
+
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/tab/tasks');

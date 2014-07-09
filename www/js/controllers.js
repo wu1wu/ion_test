@@ -121,8 +121,7 @@ app.controller('CameraCtrl', ['$scope', '$cordovaCamera', function($scope, $cord
 
 
 app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $cordovaContacts) {
-// app.controller('ContactsCtrl', ['$scope', function($scope) {
-
+  
   $scope.contacts = null;
   $scope.contactError = null;
 
@@ -131,23 +130,12 @@ app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $
     multiple: true
   };
 
-  $cordovaContacts.find(options).then(function(contacts){
-    
-    // var result = [];
-    // angular.forEach(contacts, function(contact){
-    //   if(contact){        
-    //     result.push(friend);          
-    //   }
-    // });
-    // return results;
-
+  $cordovaContacts.find(options).then(function(contacts){    
     $scope.contacts = contacts;
     $scope.contactError = null;
-    // console.log("contacts >>>", contacts);
   }, function(err){
     $scope.contacts = null;
     $scope.contactError = err;
-    // console.log("contactError >>>", contactError);
   });
 
 
@@ -192,7 +180,37 @@ app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $
   // navigator.contacts.find(fields, onSuccess, onError, options);
   
 
+}]);
 
+
+app.controller('LocationCtrl', ['$scope', '$cordovaGeolocation', function($scope, $cordovaGeolocation) {
+
+  $scope.currentLocation = null;
+  $scope.locationError = null;
+  $scope.timestamp = null;
+
+  var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
+
+  // $cordovaGeolocation.getCurrentPosition().then(function(position) {
+  //   // Position here: position.coords.latitude, position.coords.longitude
+  //   $scope.currentLocation = position;
+  //   $scope.locationError = null;
+  //   $scope.timestamp = position.timestamp;
+  // }, function(err) {
+  //   $scope.currentLocation = null;
+  //   $scope.locationError = err;
+  // });
+
+  $cordovaGeolocation.watchPosition(options).then(function() {
+      // Not currently used
+    }, function(err) {
+      $scope.currentLocation = null;
+      $scope.locationError = err;
+    }, function(position) {
+      $scope.currentLocation = position;
+      $scope.locationError = null;
+      $scope.timestamp = position.timestamp;
+  });
 
 }]);
 

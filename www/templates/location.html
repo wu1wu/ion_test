@@ -1,0 +1,24 @@
+<ion-view title="Location">
+  <ion-content class="has-header padding">
+
+    <div ng-show="currentLocation">
+      <strong>Location:</strong><br />
+      Latitude: {{currentLocation.coords.latitude}}<br />
+      Longitude: {{currentLocation.coords.longitude}}<br />
+      Altitude: {{currentLocation.coords.altitude}}<br />
+      Accuracy: {{currentLocation.coords.accuracy}}<br />
+      Altitude Accuracy: {{currentLocation.coords.altitudeAccuracy}}<br />
+      Heading: {{currentLocation.coords.heading}}<br />
+      Speed: {{currentLocation.coords.speed}}<br />
+      Timestamp: {{currentLocation.timestamp | date:'EEE, dd MMM yyyy HH:mm:ss Z'}}<br />
+    </div>
+
+    <div ng-show="locationError">
+      <strong>Error:</strong><br />
+      Code: {{locationError.code}} <br />
+      Message: {{locationError.message}} <br />
+    </div>
+
+
+  </ion-content>
+</ion-view>
