@@ -16,10 +16,6 @@
     -->
 
 
-
-
-
-
     <preference name="fullscreen" value="true" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
@@ -35,19 +31,31 @@
     <feature name="StatusBar">
       <param name="ios-package" value="CDVStatusBar" onload="true" />
     </feature>
+    
+
 
     <!-- ios preferences -->
     <preference name="UIWebViewDecelerationSpeed" value="fast" />
-
 
 
     <!-- android preferences -->
     <preference name="LoadingDialog" value="One sec,We're making the awesomeness!"/>
     <preference name="LogLevel" value="DEBUG"/>
 
-    <!-- Platform specific syntax
     <platform name="android">
-        <preference name="Fullscreen" value="true" />
+        <preference name="Fullscreen" value="true"/>
+        <preference name="KeepRunning" value="true"/>  <!-- lets keep collecting gps data -->
+    </platform>
+    
+
+    <!-- Platform specific syntax
+
+    // these permission are getting set by the /plugins/android.json 
+    // which creates the platforms/android/AndroidManifest.xml file
+    <platform name="android">
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     </platform>
 
     <platform name="android">

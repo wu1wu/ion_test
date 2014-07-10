@@ -137,47 +137,6 @@ app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $
     $scope.contacts = null;
     $scope.contactError = err;
   });
-
-
-  // function onSuccess(contacts) {
-  //   $scope.contacts = contacts;
-
-
-  //   // for (var i=0; i<contacts.length; i++) {
-  //   //     // display phone numbers
-  //   //     alert(contacts[i].displayName);
-
-  //   //     alert("Formatted: " + contacts[i].name.formatted + "\n" + 
-  //   //           "Family Name: "  + contacts[i].name.familyName + "\n" + 
-  //   //           "Given Name: "  + contacts[i].name.givenName + "\n" + 
-  //   //           "Middle Name: "  + contacts[i].name.middleName + "\n" + 
-  //   //           "Suffix: "  + contacts[i].name.honorificSuffix + "\n" + 
-  //   //           "Prefix: "  + contacts[i].name.honorificPrefix);
-
-  //   //     for (var j=0; j<contacts[i].phoneNumbers.length; j++) {
-  //   //         alert("Type: " + contacts[i].phoneNumbers[j].type + "\n" + 
-  //   //               "Value: "  + contacts[i].phoneNumbers[j].value + "\n" + 
-  //   //               "Preferred: "  + contacts[i].phoneNumbers[j].pref);
-  //   //     }
-  //   // }
-
-  //   $scope.contactError = null;
-  //   console.log("contacts >>>", contacts);
-  // };
-
-  // function onError(contactError) {
-  //   $scope.contacts = null;
-  //   $scope.contactError = err;
-  //   console.log("contactError >>>", contactError);
-  // };
-
-  // var options      = new ContactFindOptions();
-  // options.filter   = "Sergio";
-  // options.multiple = true;
-  // // options.desiredFields = ["id", "displayName", "name", "phoneNumbers", "emails", "birthday", "photos"];
-  // var fields       = ["id", "displayName", "name", "phoneNumbers", "emails", "birthday", "photos"];
-
-  // navigator.contacts.find(fields, onSuccess, onError, options);
   
 
 }]);
@@ -185,31 +144,27 @@ app.controller('ContactsCtrl', ['$scope', '$cordovaContacts', function($scope, $
 
 app.controller('LocationCtrl', ['$scope', '$cordovaGeolocation', function($scope, $cordovaGeolocation) {
 
-  $scope.currentLocation = null;
+  var lastPosition = null;
   $scope.locationError = null;
-  $scope.timestamp = null;
+  $scope.locationHistoty = [];
+  $scope.counter = 0;
 
-  var options = { maximumAge: 3000, timeout: 5000, enableHighAccuracy: true };
 
-  // $cordovaGeolocation.getCurrentPosition().then(function(position) {
-  //   // Position here: position.coords.latitude, position.coords.longitude
-  //   $scope.currentLocation = position;
-  //   $scope.locationError = null;
-  //   $scope.timestamp = position.timestamp;
-  // }, function(err) {
-  //   $scope.currentLocation = null;
-  //   $scope.locationError = err;
-  // });
+  var options = { maximumAge: 10000, timeout: 20000, enableHighAccuracy: true };
 
   $cordovaGeolocation.watchPosition(options).then(function() {
       // Not currently used
     }, function(err) {
-      $scope.currentLocation = null;
       $scope.locationError = err;
     }, function(position) {
-      $scope.currentLocation = position;
       $scope.locationError = null;
-      $scope.timestamp = position.timestamp;
+      $scope.counter++;
+      
+      if(!lastPosition || lastPosition.coords.latitude !== position.coords.latitude || lastPosition.coords.longitude !== position.coords.longitude) {
+        lastPosition = position;
+        $scope.locationHistoty.unshift(position);
+      }
+
   });
 
 }]);

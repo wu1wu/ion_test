@@ -1,23 +1,84 @@
+<style>
+table.resultsTable {
+  border: 1px solid #333;
+  width:100%;
+}
+table.resultsTable tr{
+  width:100%;
+  display: block;
+}
+table.resultsTable tr th{
+  border: 1px solid #333;
+  font-weight: bold;
+  width: 22.5%;
+}
+table.resultsTable tr th:first-child, table.resultsTable tr th:last-child{
+  width: 5%;
+}
+
+table.resultsTable tr td{
+  border: 1px solid #333;
+  padding: 5px;
+  height: 40px;
+  width: 22.5%;
+}
+
+table.resultsTable tr td:first-child, table.resultsTable tr td:last-child{
+  width: 5%;
+}
+
+
+</style>
+
 <ion-view title="Location">
   <ion-content class="has-header padding">
-
-    <div ng-show="currentLocation">
-      <strong>Location:</strong><br />
-      Latitude: {{currentLocation.coords.latitude}}<br />
-      Longitude: {{currentLocation.coords.longitude}}<br />
-      Altitude: {{currentLocation.coords.altitude}}<br />
-      Accuracy: {{currentLocation.coords.accuracy}}<br />
-      Altitude Accuracy: {{currentLocation.coords.altitudeAccuracy}}<br />
-      Heading: {{currentLocation.coords.heading}}<br />
-      Speed: {{currentLocation.coords.speed}}<br />
-      Timestamp: {{currentLocation.timestamp | date:'EEE, dd MMM yyyy HH:mm:ss Z'}}<br />
-    </div>
 
     <div ng-show="locationError">
       <strong>Error:</strong><br />
       Code: {{locationError.code}} <br />
       Message: {{locationError.message}} <br />
     </div>
+
+    <div>
+      Counter: {{counter}}
+    </div>
+
+    <table class="resultsTable">
+      <tr>
+        <th>#</th>
+        <th>Timestamp</th>
+        <th>Lat & Long</th>
+        <th>Accuracy</th>
+        <th>Heading</th>
+        <th>Speed</th>
+      </tr>
+
+      <tr 
+        collection-repeat="location in locationHistoty"
+        collection-item-width="'100%'"
+        collection-item-height="50"
+        >
+
+        <td>{{locationHistoty.length - $index}}</td>
+        <td>{{location.timestamp}}</td>
+        <td>
+          {{location.coords.latitude}} <br />
+          {{location.coords.longitude}}
+        </td>
+        <td>{{location.coords.accuracy}}</td>
+        <td>
+          {{location.coords.heading}}
+        </td>
+        <td>
+          {{location.coords.speed}}
+        </td>
+      </tr>
+
+      <tr ng-show="locationHistoty.length==0">
+        <td colspan="6">No location data received yet</td>
+      </tr>
+    </table>
+
 
 
   </ion-content>
